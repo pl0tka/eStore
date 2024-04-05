@@ -45,6 +45,39 @@ const renderProducts = (products, containerDOM) => {
 const displayFetchedProducts = async () => {
   const products = await fetchProducts(url);
   renderProducts(products, productsContainer);
+
+  // ADD PRODUCT TO CART
+  const addToCartBtns = document.querySelectorAll('.product__add-to-cart-btn');
+  addToCartBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const productId = parseInt(btn.dataset.id);
+      const selectedProduct = products.find(
+        (product) => product.id === productId
+      );
+      // LOCAL STORAGE OPERATIONS
+      // check if storage is empty
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      if (!cart) {
+        cart = [];
+      }
+      // check if selected product is in storage
+      const productInCart = cart.find((product) => product.id === productId);
+      // set product to add
+      if (!productInCart) {
+        cart.push({ ...selectedProduct, count: 1 });
+      } else {
+        cart = cart.map((product) => {
+          if (product.id === productId) {
+            return { ...selectedProduct, count: productInCart.count + 1 };
+          } else {
+            return product;
+          }
+        });
+      }
+      // add cart to storage
+      localStorage.setItem('cart', JSON.stringify(cart));
+    });
+  });
 };
 
 displayFetchedProducts();
