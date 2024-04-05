@@ -1,27 +1,50 @@
+// API all products
 const url = 'https://fakestoreapi.com/products/';
 
-const fetchProducts = async (url) => {
-  const response = await fetch(url);
-  const data = await response.json();
+const getElement = (selection) => {
+  const element = document.querySelector(selection);
+  if (element) {
+    return element;
+  }
+  throw new Error(`The selector "${selection}" does not exist`);
+};
+// DOM selections
+const productsContainer = getElement('.products__inner');
 
-  return data;
+// FETCH PRODUCTS
+const fetchProducts = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
 };
 
-const displayProducts = async () => {
-  const fetchedProducts = await fetchProducts(url);
-
-  const renderedProducts = fetchedProducts.map((product) => {
-    const { title, image, price } = product;
-    // temp class name
-    return `<div class="product">
-      <img src="${image}"/>
-      <h3>${title}</h3>
-      <p>PLN ${price}</p>
-    </div>`;
+// RENDER PRODUCTS
+const renderProducts = (products, containerDOM) => {
+  const renderedProducts = products.map((product) => {
+    const { id, title, image, price } = product;
+    return `<article class="product">
+    <img src="${image}" alt="${image}" class="product__img" />
+    <h3 class="product__title">${title}</h3>
+    <p class="product__price">${price} PLN</p>
+    <button
+      class="btn product__add-to-cart-btn"
+      data-id="${id}"
+    >
+      add to cart
+    </button>
+  </article>`;
   }).join``;
 
-  const productsContainerDOM = document.querySelector('.products');
-  productsContainerDOM.innerHTML = renderedProducts;
+  containerDOM.innerHTML = renderedProducts;
 };
 
-displayProducts();
+const displayFetchedProducts = async () => {
+  const products = await fetchProducts(url);
+  renderProducts(products, productsContainer);
+};
+
+displayFetchedProducts();
