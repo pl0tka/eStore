@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eStore | Home</title>
+    <title>eStore | Contact</title>
     <!-- icons -->
     <link
       rel="stylesheet"
@@ -31,17 +31,28 @@
         </ul>
       </div>
     </nav>
-    <!-- MAIN -->
+    <!-- CART -->
     <main class="page-container">
-      <div class="hero">
-        <h1 class="hero__title">Welcome to eStore</h1>
-        <h2 class="hero__subtitle">Best products in affordable prices!</h2>
-        <button class="btn hero__shop-btn">
-          <a href="./products.html">shop now</a>
-        </button>
-      </div>
+      <section class="cart">
+        <h1 class="cart__title">Your shopping cart</h1>
+        <div class="cart__inner">
+          <!-- single cart-product -->
+          <!-- <article class="cart-product">
+          <img src="${image}" alt="${image}" class="cart-product__img" />
+          <h3 class="cart-product__title">${title}</h3>
+          <p class="cart-product__price">${price} PLN</p>
+          <button class="btn cart-product__remove-btn" data-id="${id}">
+            remove
+          </button>
+          <button class="btn cart-product__decrease-btn">-</button>
+          <p class="cart-product__counter">0</p>
+          <button class="btn cart-product__increase-btn">+</button>
+        </article> -->
+        </div>
+        <button class="btn cart__checkout-btn">Checkout</button>
+      </section>
     </main>
     <!-- js -->
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./contact.js"></script>
   </body>
 </html>

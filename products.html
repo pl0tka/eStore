@@ -17,27 +17,39 @@
   </head>
   <body>
     <!-- NAV -->
-    <nav>
-      <div>logo</div>
-      <ul>
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./products.html">Products</a></li>
-        <li><a href="./contact.html">Contact</a></li>
-      </ul>
-      <button>
-        <i class="fa-solid fa-cart-shopping"></i>
-      </button>
+    <nav class="nav">
+      <div class="nav__inner">
+        <div class="nav__logo">logo</div>
+        <ul class="nav__links">
+          <li class="nav__link"><a href="./index.html">Home</a></li>
+          <li class="nav__link"><a href="./products.html">Products</a></li>
+          <li class="nav__link">
+            <a href="./cart.html"
+              >Cart<i class="fa-solid fa-cart-shopping"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <!-- MAIN -->
-    <main>
-      <!-- temp class name -->
-      <div class="products"></div>
-      <aside>
-        <div class="cart-container">list of products here</div>
-        <p>TOTAL: <span class="cart-total"> PLN</span></p>
-        <button>place order</button>
-        <button class="btn-close">close</button>
-      </aside>
+    <!-- PRODUCTS -->
+    <main class="page-container">
+      <section class="products">
+        <h1 class="products__title">Our products</h1>
+        <div class="products__inner">
+          <!-- single product -->
+          <!-- <article class="product">
+          <img src="${image}" alt="${image}" class="product__img" />
+          <h3 class="product__title">${title}</h3>
+          <p class="product__price">${price} PLN</p>
+          <button
+            class="btn product__add-to-cart-btn"
+            data-id="${id}"
+          >
+            add to cart
+          </button>
+        </article> -->
+        </div>
+      </section>
     </main>
     <!-- js -->
     <script type="module" src="./products.js"></script>
