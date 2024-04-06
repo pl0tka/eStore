@@ -1,7 +1,9 @@
 import { getElement } from './utils.js';
+import { displayTotalProductCount } from './common.js';
 
 const cartProductsContainer = getElement('.cart__inner');
 const totalPrice = getElement('.cart__total-price');
+const totalProductCount = getElement('.nav__cart-count');
 
 let cart = JSON.parse(localStorage.getItem('cart'));
 if (!cart) {
@@ -26,18 +28,16 @@ const renderCartProducts = (products, containerDOM) => {
 
   containerDOM.innerHTML = renderedProducts;
 };
-
 renderCartProducts(cart, cartProductsContainer);
 
+// set total cart value
 const setTotalValue = () => {
-  if (!cart) {
-    totalPrice.innerHTML = 0;
-  } else {
-    totalPrice.innerHTML =
-      cart.reduce(
-        (sum, product) => sum + product.price * 100 * product.count,
-        0
-      ) / 100;
-  }
+  totalPrice.innerHTML =
+    cart.reduce(
+      (sum, product) => sum + product.price * 100 * product.count,
+      0
+    ) / 100;
 };
 setTotalValue();
+
+displayTotalProductCount(cart, totalProductCount);

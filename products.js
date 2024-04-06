@@ -1,15 +1,12 @@
+import { getElement } from './utils.js';
+import { displayTotalProductCount } from './common.js';
+
 // API all products
 const url = 'https://fakestoreapi.com/products/';
 
-const getElement = (selection) => {
-  const element = document.querySelector(selection);
-  if (element) {
-    return element;
-  }
-  throw new Error(`The selector "${selection}" does not exist`);
-};
 // DOM selections
 const productsContainer = getElement('.products__inner');
+const totalProductCount = getElement('.nav__cart-count');
 
 // FETCH PRODUCTS
 const fetchProducts = async (url) => {
@@ -76,8 +73,18 @@ const displayFetchedProducts = async () => {
       }
       // add cart to storage
       localStorage.setItem('cart', JSON.stringify(cart));
+
+      // set amount of products in cart (icon)
+      displayTotalProductCount(cart, totalProductCount);
     });
   });
 };
 
 displayFetchedProducts();
+
+// set amount of products in cart (icon)
+let cart = JSON.parse(localStorage.getItem('cart'));
+if (!cart) {
+  cart = [];
+}
+displayTotalProductCount(cart, totalProductCount);
