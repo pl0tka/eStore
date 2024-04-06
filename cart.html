@@ -27,6 +27,7 @@
             <a href="./cart.html"
               >Cart<i class="fa-solid fa-cart-shopping"></i
             ></a>
+            <span class="nav__cart-count">0</span>
           </li>
         </ul>
       </div>
@@ -35,24 +36,14 @@
     <main class="page-container">
       <section class="cart">
         <h1 class="cart__title">Your shopping cart</h1>
-        <div class="cart__inner">
-          <!-- single cart-product -->
-          <!-- <article class="cart-product">
-          <img src="${image}" alt="${image}" class="cart-product__img" />
-          <h3 class="cart-product__title">${title}</h3>
-          <p class="cart-product__price">${price} PLN</p>
-          <button class="btn cart-product__remove-btn" data-id="${id}">
-            remove
-          </button>
-          <button class="btn cart-product__decrease-btn">-</button>
-          <p class="cart-product__counter">0</p>
-          <button class="btn cart-product__increase-btn">+</button>
-        </article> -->
-        </div>
+        <div class="cart__inner"></div>
+        <p class="cart__total-price-wrapper">
+          Total: <span class="cart__total-price"></span> PLN
+        </p>
         <button class="btn cart__checkout-btn">Checkout</button>
       </section>
     </main>
     <!-- js -->
-    <script type="module" src="./contact.js"></script>
+    <script type="module" src="./cart.js"></script>
   </body>
 </html>
