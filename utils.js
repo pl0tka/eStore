@@ -5,3 +5,14 @@ export const getElement = (selection) => {
   }
   throw new Error(`The selector "${selection}" does not exist`);
 };
+
+export const getStorageItem = (itemKey) => {
+  let storageItem = JSON.parse(localStorage.getItem(itemKey));
+  if (!storageItem) {
+    storageItem = [];
+  }
+  return storageItem;
+};
+export const setStorageItem = (itemKey, itemValue) => {
+  localStorage.setItem(itemKey, JSON.stringify(itemValue));
+};
