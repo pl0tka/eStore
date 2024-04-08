@@ -1,0 +1,14 @@
+body,
+button {
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+}
+body {
+  background-color: $clr-grey-lightest;
+}
+button {
+  font-weight: 200;
+}
+.page-container {
+  @include container-padding;
+}

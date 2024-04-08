@@ -1,0 +1,72 @@
+// layout
+@mixin limit-content-width {
+  width: 100%;
+  max-width: $max-content-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin container-padding {
+  padding: $padding-sm $padding-sm;
+
+  @include md-screen {
+    padding: $padding-md ($padding-md * 2);
+  }
+  @include xl-screen {
+    padding: $padding-lg ($padding-lg * 2);
+  }
+}
+
+// hero height
+// 1px = nav border
+@mixin hero-height {
+  height: calc(100vh - $logo-height - ($padding-sm * 2) - 1px);
+
+  @include md-screen {
+    height: calc(100vh - $logo-height - ($padding-md * 2) - 1px);
+  }
+  @include xl-screen {
+    height: calc(100vh - $logo-height - ($padding-lg * 2) - 1px);
+  }
+}
+
+// fonts
+@mixin text-h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: $spacing;
+  line-height: 1;
+
+  @include md-screen {
+    font-size: 4.5rem;
+  }
+  @include xl-screen {
+    font-size: 6rem;
+  }
+}
+
+@mixin text-h2 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  letter-spacing: $spacing;
+
+  @include md-screen {
+    font-size: 2rem;
+  }
+  @include xl-screen {
+    font-size: 2.5rem;
+  }
+}
+
+@mixin text-md {
+  font-size: 1.25rem;
+  font-weight: 100;
+  letter-spacing: $spacing;
+
+  @include md-screen {
+    font-size: 1.75rem;
+  }
+  @include xl-screen {
+    font-size: 2.25rem;
+  }
+}

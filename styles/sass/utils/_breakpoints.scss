@@ -1,0 +1,33 @@
+$breakpoints: (
+  'xs': $xs-screen,
+  'sm': $sm-screen,
+  'md': $md-screen,
+  'lg': $lg-screen,
+  'xl': $xl-screen,
+);
+
+@mixin xs-screen {
+  @media (min-width: map-get($breakpoints, 'xs')) {
+    @content;
+  }
+}
+@mixin sm-screen {
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
+@mixin md-screen {
+  @media (min-width: map-get($breakpoints, 'md')) {
+    @content;
+  }
+}
+@mixin lg-screen {
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    @content;
+  }
+}
+@mixin xl-screen {
+  @media (min-width: map-get($breakpoints, 'xl')) {
+    @content;
+  }
+}

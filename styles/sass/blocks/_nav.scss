@@ -1,0 +1,80 @@
+.nav {
+  background-color: $clr-white;
+  border-bottom: 1px solid $clr-grey-light;
+  @include container-padding;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include limit-content-width;
+  }
+
+  &__logo-link {
+    height: $logo-height;
+  }
+
+  &__logo {
+    height: 100%;
+    width: auto;
+  }
+
+  &__toggle-btn {
+    position: relative;
+    width: $logo-height;
+    height: $logo-height;
+
+    @include md-screen {
+      display: none;
+    }
+  }
+
+  &__toggle-icon {
+    // these manipulations needed because icon is shifted to the left
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -45%);
+  }
+
+  &__links {
+    display: none;
+    @include md-screen {
+      display: flex;
+      justify-content: space-around;
+      flex-basis: 40%;
+      color: $clr-black;
+    }
+  }
+
+  &__link {
+    color: $clr-black;
+
+    &:last-child {
+      position: relative;
+    }
+  }
+
+  &__cart-count-box {
+    color: $clr-white;
+    background-color: $clr-black;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    // positioning the box
+    position: absolute;
+    top: -0.5rem;
+    right: -0.75rem;
+    // centering count
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__cart-count {
+    font-size: 0.65rem;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    vertical-align: center;
+  }
+}

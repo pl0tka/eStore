@@ -1,0 +1,26 @@
+@mixin btn-base() {
+  cursor: pointer;
+  border: none;
+  border-radius: $btn-radius;
+  letter-spacing: $spacing;
+}
+@mixin btn-padding($padding-x: $padding-xs, $padding-y: $padding-sm) {
+  padding: $padding-x $padding-y;
+}
+@mixin btn-color($bg-color: $clr-primary, $color: $clr-white) {
+  background-color: $bg-color;
+  color: $color;
+}
+
+.btn {
+  @include btn-base;
+  @include btn-padding;
+  @include btn-color;
+}
+// .btn--secondary {
+//   @include btn($clr-secondary);
+// }
+.btn--shop-now {
+  @include btn-padding($padding-sm, $padding-sm * 2);
+  @include btn-color($clr-secondary, $clr-white);
+}

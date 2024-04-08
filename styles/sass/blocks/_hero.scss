@@ -1,0 +1,33 @@
+.page-container--hero {
+  @include hero-height;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url($bg-img) center/cover;
+  display: flex;
+}
+
+.hero {
+  @include limit-content-width;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  color: $clr-white;
+
+  &__title {
+    @include text-h1;
+  }
+
+  &__subtitle {
+    @include text-h2;
+    margin-bottom: 2.5rem;
+  }
+
+  &__shop-now-link {
+    @include text-md;
+    font-family: 'DM Sans', sans-serif;
+    font-optical-sizing: auto;
+    letter-spacing: $spacing-larger;
+    color: $clr-white;
+  }
+}
