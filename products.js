@@ -1,4 +1,4 @@
-import { getElement } from './utils.js';
+import { getElement, getStorageItem } from './utils.js';
 import { displayTotalProductCount } from './common.js';
 
 // API all products
@@ -24,13 +24,13 @@ const renderProducts = (products, containerDOM) => {
   const renderedProducts = products.map((product) => {
     const { id, title, image, price } = product;
     return `<article class="product">
-    <img src="${image}" alt="${image}" class="product__img" />
+    <div class="product__img-box">
+    <img src="${image}" alt="${image}" class="product__img" /></div>
     <h3 class="product__title">${title}</h3>
     <p class="product__price">${price} PLN</p>
     <button
       class="btn product__add-to-cart-btn"
-      data-id="${id}"
-    >
+      data-id="${id}">
       add to cart
     </button>
   </article>`;
@@ -53,10 +53,7 @@ const displayFetchedProducts = async () => {
       );
       // LOCAL STORAGE OPERATIONS
       // check if storage is empty
-      let cart = JSON.parse(localStorage.getItem('cart'));
-      if (!cart) {
-        cart = [];
-      }
+      let cart = getStorageItem('cart');
       // check if selected product is in storage
       const productInCart = cart.find((product) => product.id === productId);
       // set product to add

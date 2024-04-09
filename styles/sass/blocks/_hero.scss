@@ -24,7 +24,7 @@
   }
 
   &__shop-now-link {
-    @include text-md;
+    @include text-hero-btn;
     font-family: 'DM Sans', sans-serif;
     font-optical-sizing: auto;
     letter-spacing: $spacing-larger;

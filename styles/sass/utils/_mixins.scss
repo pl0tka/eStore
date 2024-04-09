@@ -30,6 +30,35 @@
   }
 }
 
+// grid
+@mixin grid-width-columns(
+  $number-of-cols-xs,
+  $number-of-cols-sm,
+  $number-of-cols-md,
+  $number-of-cols-lg,
+  $number-of-cols-xl
+) {
+  display: grid;
+  grid-template-columns: repeat($number-of-cols-xs, minmax(0, 1fr));
+  gap: $grid-gap;
+
+  @include sm-screen {
+    grid-template-columns: repeat($number-of-cols-sm, minmax(0, 1fr));
+  }
+
+  @include md-screen {
+    grid-template-columns: repeat($number-of-cols-md, minmax(0, 1fr));
+  }
+
+  @include lg-screen {
+    grid-template-columns: repeat($number-of-cols-lg, minmax(0, 1fr));
+  }
+
+  @include xl-screen {
+    grid-template-columns: repeat($number-of-cols-xl, minmax(0, 1fr));
+  }
+}
+
 // fonts
 @mixin text-h1 {
   font-size: 3rem;
@@ -58,7 +87,7 @@
   }
 }
 
-@mixin text-md {
+@mixin text-hero-btn {
   font-size: 1.25rem;
   font-weight: 100;
   letter-spacing: $spacing;
@@ -69,4 +98,30 @@
   @include xl-screen {
     font-size: 2.25rem;
   }
+}
+
+@mixin text-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: $spacing;
+  margin-bottom: 2rem;
+  text-align: center;
+
+  @include md-screen {
+    font-size: 2rem;
+  }
+  @include xl-screen {
+    font-size: 2.25rem;
+  }
+}
+
+@mixin text-md {
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 600;
+}
+
+@mixin text-product-price {
+  font-size: 0.875rem;
+  font-weight: 300;
 }
