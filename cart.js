@@ -11,16 +11,20 @@ const renderCartProducts = (products, containerDOM) => {
   const renderedProducts = products.map((product) => {
     const { id, title, image, price, count } = product;
     return `<article class="cart-product" data-id="${id}">
-  <img src="${image}" alt="${image}" class="cart-product__img" />
-  <h3 class="cart-product__title">${title}</h3>
-  <p class="cart-product__price">${price} PLN</p>
-  <button class="btn cart-product__remove-btn" data-action="remove">
-    remove
-  </button>
-  <button class="btn cart-product__decrease-btn" data-action="decrease">-</button>
-  <p class="cart-product__count">${count}</p>
-  <button class="btn cart-product__increase-btn" data-action="increase">+</button>
-</article>`;
+    <div class="cart-product__img-box"><img src="${image}" alt="${image}" class="cart-product__img" /></div>
+    <div class="cart-product__info-box">
+    <h3 class="cart-product__title">${title}</h3>
+    <p class="cart-product__price">${price} PLN</p>
+    </div>
+    <button class="btn btn--remove cart-product__remove-btn" data-action="remove">
+      remove
+    </button>
+    <div class="cart-product__counter-box">
+    <button class="btn btn--count cart-product__decrease-btn"  data-action="decrease">-</button>
+    <p class="cart-product__count">${count}</p>
+    <button class="btn btn--count cart-product__increase-btn" data-action="increase">+</button>
+    </div>
+  </article>`;
   }).join``;
 
   containerDOM.innerHTML = renderedProducts;
@@ -70,7 +74,8 @@ const setTotalValue = () => {
 const handleBtnClick = (event) => {
   const btn = event.target;
   if (btn.classList.contains('btn')) {
-    const productId = parseInt(btn.parentElement.dataset.id);
+    // const productId = parseInt(btn.parentElement.dataset.id);
+    const productId = parseInt(btn.closest('.cart-product').dataset.id);
     const btnAction = btn.dataset.action;
     updateCart(btn, productId, btnAction);
   }

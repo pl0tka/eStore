@@ -28,3 +28,16 @@
   @include btn-padding($padding-sm, $padding-sm * 2);
   @include btn-color($clr-secondary, $clr-white);
 }
+.btn--checkout {
+  @include btn-padding($padding-xs, $padding-sm * 2);
+}
+.btn--remove {
+  @include btn-color($clr-danger, $clr-white);
+}
+.btn--count {
+  @include btn-color($clr-grey-light, $clr-black);
+}
+.btn--disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
