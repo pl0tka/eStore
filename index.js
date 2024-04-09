@@ -1,3 +1,5 @@
+import './navbarInteractions.js';
+
 import { getElement } from './utils.js';
 import { displayTotalProductCount } from './common.js';
 const totalProductCount = getElement('.nav__cart-count');

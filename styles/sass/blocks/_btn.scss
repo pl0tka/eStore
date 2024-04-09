@@ -6,6 +6,7 @@
   font-family: 'DM Sans', sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
+  transition: $transition-base;
 }
 @mixin btn-padding($padding-x: $padding-xs, $padding-y: $padding-sm) {
   padding: $padding-x $padding-y;

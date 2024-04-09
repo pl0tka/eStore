@@ -1,13 +1,24 @@
-.nav {
+.header {
+  position: sticky;
+  top: 0;
   background-color: $clr-white;
   border-bottom: 1px solid $clr-grey-light;
   @include container-padding;
 
   &__inner {
+    @include limit-content-width;
+
+    @include md-screen {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__logo-toggle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include limit-content-width;
   }
 
   &__logo-link {
@@ -23,48 +34,85 @@
     position: relative;
     width: $logo-height;
     height: $logo-height;
+    transition: $transition-base;
 
     @include md-screen {
       display: none;
     }
+
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
 
   &__toggle-icon {
-    // these manipulations needed because icon is shifted to the left
     position: absolute;
     top: 50%;
     left: 50%;
+    // these manipulations needed because icon is shifted to the left
     transform: translate(-45%, -45%);
+  }
+}
+
+.nav {
+  height: 0;
+  overflow: hidden;
+  transition: $transition-base;
+
+  @include md-screen {
+    height: auto;
+    overflow: visible;
+    flex-basis: 40%;
   }
 
   &__links {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+
     @include md-screen {
-      display: flex;
+      flex-direction: row;
       justify-content: space-around;
-      flex-basis: 40%;
       color: $clr-black;
     }
   }
 
-  &__link {
-    color: $clr-black;
+  &__links--show {
+    height: 10rem;
+  }
 
-    &:last-child {
-      position: relative;
+  &__item {
+    border-bottom: 1px solid transparent;
+    transition: $transition-base;
+
+    &:hover {
+      color: $clr-secondary;
+      border-bottom-color: $clr-secondary;
     }
+  }
+
+  &__link {
+    // color: $clr-black;
+    color: inherit;
+  }
+
+  &__item-cart-icon {
+    position: relative;
   }
 
   &__cart-count-box {
     color: $clr-white;
     background-color: $clr-black;
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     border-radius: 50%;
+    transition: $transition-base;
     // positioning the box
     position: absolute;
-    top: -0.5rem;
-    right: -0.75rem;
+    top: -0.7rem;
+    right: -0.9rem;
     // centering count
     display: flex;
     justify-content: center;

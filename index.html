@@ -17,30 +17,35 @@
   </head>
   <body>
     <!-- NAV -->
-    <nav class="nav">
-      <div class="nav__inner">
-        <a href="./index.html" class="nav__logo-link">
-          <img class="nav__logo" src="./img/eStore_logo.svg" alt="logo"
-        /></a>
-        <ul class="nav__links">
-          <li><a href="./index.html" class="nav__link">Home</a></li>
-          <li class="nav__link">
-            <a href="./products.html" class="nav__link">Products</a>
-          </li>
-          <li class="nav__link">
-            <a href="./cart.html" class="nav__link"
-              >Cart<i class="fa-solid fa-cart-shopping"></i
-            ></a>
-            <div class="nav__cart-count-box">
-              <span class="nav__cart-count"></span>
-            </div>
-          </li>
-        </ul>
-        <button class="btn nav__toggle-btn">
-          <i class="nav__toggle-icon fa-solid fa-bars"></i>
-        </button>
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__logo-toggle">
+          <a href="./index.html" class="header__logo-link">
+            <img class="header__logo" src="./img/eStore_logo.svg" alt="logo"
+          /></a>
+          <button class="btn header__toggle-btn">
+            <i class="header__toggle-icon fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav__links">
+            <li class="nav__item">
+              <a href="./index.html" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="./products.html" class="nav__link">Products</a>
+            </li>
+            <li class="nav__item nav__item-cart">
+              <a href="./cart.html" class="nav__link"
+                >Cart<i class="nav__item-cart-icon fa-solid fa-cart-shopping"
+                  ><div class="nav__cart-count-box">
+                    <span class="nav__cart-count"></span></div></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </header>
     <!-- MAIN -->
     <main class="page-container page-container--hero">
       <div class="hero">

@@ -1,3 +1,5 @@
+import './navbarInteractions.js';
+
 import { getElement, getStorageItem, setStorageItem } from './utils.js';
 import { displayTotalProductCount } from './common.js';
 
