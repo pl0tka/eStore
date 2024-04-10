@@ -111,6 +111,14 @@ body {
   cursor: not-allowed;
 }
 
+.btn--white {
+  background-color: #fff;
+  color: #0f5e59;
+}
+.btn--white:hover {
+  background-color: #ededed;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -489,6 +497,104 @@ body {
 .cart-product__price {
   font-size: 0.875rem;
   font-weight: 300;
+}
+
+.modal--hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(34, 34, 34, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-product {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff;
+  border: 1px solid #edeeef;
+  box-shadow: 0px 6px 20px -15px #b0b8c0;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 90%;
+  height: 90%;
+  overflow: scroll;
+}
+@media (min-width: 768px) {
+  .single-product {
+    max-width: 47.5rem;
+    max-height: 35rem;
+  }
+}
+.single-product__close-btn {
+  align-self: end;
+}
+.single-product__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+@media (min-width: 768px) {
+  .single-product__inner {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+.single-product__img-box {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 2/3;
+  flex-shrink: 0;
+}
+@media (min-width: 576px) {
+  .single-product__img-box {
+    aspect-ratio: 1/1;
+  }
+}
+@media (min-width: 768px) {
+  .single-product__img-box {
+    max-width: 17.5rem;
+  }
+}
+.single-product__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.single-product__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.single-product__title {
+  font-size: 1.5rem;
+  line-height: 1.75;
+  font-weight: 600;
+}
+.single-product__desc {
+  font-weight: 200;
+  flex-grow: 1;
+}
+.single-product__price {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+.single-product__counter-box {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1rem;
+}
+.single-product__add-to-cart-btn {
+  flex-grow: 1;
 }
 
 /*# sourceMappingURL=styles.css.map */

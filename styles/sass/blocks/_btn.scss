@@ -42,3 +42,6 @@
   opacity: 0.2;
   cursor: not-allowed;
 }
+.btn--white {
+  @include btn-color($clr-white, $clr-primary);
+}
