@@ -1,7 +1,8 @@
 import './navbarInteractions.js';
 
-import { getElement, getStorageItem } from './utils.js';
+import { getElement, getStorageItem, setStorageItem } from './utils.js';
 import { displayTotalProductCount } from './common.js';
+import { renderAllProducts } from './renderAllProducts.js';
 
 // API all products
 const url = 'https://fakestoreapi.com/products/';
@@ -21,36 +22,9 @@ const fetchProducts = async (url) => {
   }
 };
 
-// RENDER PRODUCTS
-const renderProducts = (products, containerDOM) => {
-  const renderedProducts = products.map((product) => {
-    const { id, title, image, price, description } = product;
-    return `<article class="product">
-    <div class="product__img-box">
-    <img src="${image}" alt="${image}" class="product__img" /></div>
-    <h3 class="product__title">${title}</h3>
-    <p class="product__price">${price} PLN</p>
-    <div class="products__btns-box">
-    <button
-      class="btn product__add-to-cart-btn"
-      data-id="${id}">
-      add to cart
-    </button>
-    <button
-      class="btn btn--white product__info-btn"
-      data-id="${id}">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-    </div>
-  </article>`;
-  }).join``;
-
-  containerDOM.innerHTML = renderedProducts;
-};
-
 const displayFetchedProducts = async () => {
   const products = await fetchProducts(url);
-  renderProducts(products, productsContainer);
+  renderAllProducts(products, productsContainer);
 
   // ADD PRODUCT TO CART
   const addToCartBtns = document.querySelectorAll('.product__add-to-cart-btn');
@@ -80,7 +54,8 @@ const displayFetchedProducts = async () => {
         });
       }
       // add cart to storage
-      localStorage.setItem('cart', JSON.stringify(cart));
+      // localStorage.setItem('cart', JSON.stringify(cart));
+      setStorageItem('cart', cart);
 
       // set amount of products in cart (icon)
       displayTotalProductCount(cart, totalProductCount);
@@ -99,45 +74,117 @@ const displayFetchedProducts = async () => {
       const modal = document.querySelector('.modal');
       modal.classList.remove('modal--hide');
       modal.innerHTML = `<div class="overlay">
-      <article class="single-product">
-        <button class="btn btn--remove single-product__close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="single-product__inner">
-          <div class="single-product__img-box">
-            <img src="${image}" alt="${image}" class="single-product__img" />
-          </div>
-          <div class="single-product__info">
-            <p class="single-product__price">${price} PLN</p>
-            <h3 class="single-product__title">${title}</h3>
-            <p class="single-product__desc">${description}</p>
-            <div class="single-product__counter-box">
-              <button
-                class="btn btn--count cart-product__decrease-btn"
-                data-action="decrease"
-              >
-                -
-              </button>
-              <p class="cart-product__count">1</p>
-              <button
-                class="btn btn--count cart-product__increase-btn"
-                data-action="increase"
-              >
-                +
-              </button>
-              <button class="btn single-product__add-to-cart-btn" data-id=${id}>
-                add to cart
-              </button>
+        <article class="single-product">
+          <button class="btn btn--remove single-product__close-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="single-product__inner">
+            <div class="single-product__img-box">
+              <img src="${image}" alt="${image}" class="single-product__img" />
+            </div>
+            <div class="single-product__info">
+              <p class="single-product__price">${price} PLN</p>
+              <h3 class="single-product__title">${title}</h3>
+              <p class="single-product__desc">${description}</p>
+              <div class="single-product__counter-box">
+                <button
+                  class="btn btn--count cart-product__decrease-btn"
+                  data-action="decrease"
+                >
+                  -
+                </button>
+                <p class="cart-product__count">1</p>
+                <button
+                  class="btn btn--count cart-product__increase-btn"
+                  data-action="increase"
+                >
+                  +
+                </button>
+                <button class="btn single-product__add-to-cart-btn" data-action="add" data-id=${id}>
+                  add to cart
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </article>
-    </div>`;
+        </article>
+      </div>`;
 
+      // change count
+      const countDOM = modal.querySelector('.cart-product__count');
+      let count = 1;
+      countDOM.textContent = 1;
+
+      const handleBtnClick = (event) => {
+        const btn = event.target;
+
+        if (btn.classList.contains('btn')) {
+          const btnAction = btn.dataset.action;
+
+          if (btnAction === 'increase') {
+            count++;
+            countDOM.textContent = count;
+          }
+
+          if (btnAction === 'decrease') {
+            if (count > 1) {
+              count--;
+            }
+            countDOM.textContent = count;
+          }
+
+          if (btnAction === 'shopping') {
+            modal.classList.add('modal--hide');
+            modal.innerHTML = '';
+            modal.removeEventListener('click', handleBtnClick);
+          }
+
+          if (btnAction === 'add') {
+            let cart = getStorageItem('cart');
+            const productIndex = cart.findIndex(
+              (product) => product.id === productId
+            );
+
+            // check if selected product is in storage
+            const productInCart = cart.find(
+              (product) => product.id === productId
+            );
+            // set product to add
+            if (!productInCart) {
+              cart.push({ ...selectedProduct, count: count });
+              // add cart to storage
+              setStorageItem('cart', cart);
+              // update icon
+              displayTotalProductCount(cart, totalProductCount);
+            } else {
+              cart[productIndex].count =
+                cart[productIndex].count + parseInt(countDOM.textContent);
+              // add cart to storage
+              setStorageItem('cart', cart);
+              // update icon
+              displayTotalProductCount(cart, totalProductCount);
+            }
+
+            // product added message
+            const modalInner = getElement('.single-product__inner');
+            modalInner.classList.add('single-product__inner--added-mes');
+            modalInner.innerHTML = `<p class="single-product__product-added-mes">Product added to your cart! &#x1F389;</p>
+            <div class="single-product__btns-box--added-mes">
+            <button class="btn btn--secondary" data-action="shopping">Continue shopping</button>
+            <button class="btn btn--grey"><a class="single-product__btn-link" href="./cart.html">Go to cart<a></button>
+            </div>
+            `;
+          }
+        }
+      };
+
+      modal.addEventListener('click', handleBtnClick);
+
+      // close modal
       const closeModalBtn = getElement('.single-product__close-btn');
       closeModalBtn.addEventListener('click', () => {
         modal.classList.add('modal--hide');
         modal.innerHTML = '';
+        modal.removeEventListener('click', handleBtnClick);
       });
     });
   });

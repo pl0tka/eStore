@@ -28,6 +28,7 @@
     @include text-md;
     flex-grow: 1;
   }
+
   &__price {
     @include text-product-price;
   }

@@ -42,6 +42,12 @@
   opacity: 0.2;
   cursor: not-allowed;
 }
+.btn--secondary {
+  @include btn-color($clr-secondary, $clr-white);
+}
 .btn--white {
   @include btn-color($clr-white, $clr-primary);
+}
+.btn--grey {
+  @include btn-color($clr-grey-light, $clr-black);
 }

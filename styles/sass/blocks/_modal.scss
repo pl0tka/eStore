@@ -91,4 +91,25 @@
   &__add-to-cart-btn {
     flex-grow: 1;
   }
+
+  // Product added
+  &__inner--added-mes {
+    flex-direction: column !important;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__product-added-mes {
+    @include text-lg;
+  }
+
+  &__btns-box--added-mes {
+    display: flex;
+    justify-content: center;
+    gap: $gap;
+  }
+
+  &__btn-link {
+    color: inherit;
+  }
 }

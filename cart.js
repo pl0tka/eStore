@@ -76,7 +76,6 @@ const setTotalValue = () => {
 const handleBtnClick = (event) => {
   const btn = event.target;
   if (btn.classList.contains('btn')) {
-    // const productId = parseInt(btn.parentElement.dataset.id);
     const productId = parseInt(btn.closest('.cart-product').dataset.id);
     const btnAction = btn.dataset.action;
     updateCart(btn, productId, btnAction);
