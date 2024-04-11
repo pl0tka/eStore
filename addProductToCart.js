@@ -12,7 +12,7 @@ export const addToCart = (productId, selectedProduct, count = 1) => {
   if (!productInCart) {
     cart.push({ ...selectedProduct, count });
   } else {
-    cart[productIndex].count = cart[productIndex].count + 1;
+    cart[productIndex].count = cart[productIndex].count + count;
   }
 
   setStorageItem('cart', cart);
