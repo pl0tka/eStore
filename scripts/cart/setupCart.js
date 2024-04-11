@@ -1,5 +1,5 @@
 import { getElement, getStorageItem, setStorageItem } from '../utils/utils.js';
-import { displayTotalProductCount } from '../common.js';
+import { displayTotalProductCount } from '../common/common.js';
 import { renderCartProducts } from './renderCartProducts.js';
 
 const totalProductCount = getElement('.nav__cart-count');

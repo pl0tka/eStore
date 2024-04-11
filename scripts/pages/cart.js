@@ -1,6 +1,6 @@
 import '../navbar/navbarInteractions.js';
 import { getElement, getStorageItem } from '../utils/utils.js';
-import { displayTotalProductCount } from '../common.js';
+import { displayTotalProductCount } from '../common/common.js';
 import { renderCartProducts } from '../cart/renderCartProducts.js';
 import { setTotalValue, handleBtnClick } from '../cart/setupCart.js';
 
