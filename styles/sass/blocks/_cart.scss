@@ -19,7 +19,11 @@
     align-self: end;
   }
 
-  &__total-checkout--hide {
+  &__total-price--hidden {
+    display: none;
+  }
+
+  &__checkout-btn--hidden {
     display: none;
   }
 

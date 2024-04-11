@@ -10,11 +10,15 @@ const totalProductCount = getElement('.nav__cart-count');
 let cart = getStorageItem('cart');
 
 const init = () => {
+  const pageLoading = getElement('.loading-spinner');
+
   renderCartProducts(cart, cartProductsContainer);
   setTotalValue();
   displayTotalProductCount(cart, totalProductCount);
 
   cartProductsContainer.addEventListener('click', handleBtnClick);
+
+  pageLoading.style.display = 'none';
 };
 
 init();

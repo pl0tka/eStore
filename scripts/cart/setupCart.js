@@ -52,9 +52,11 @@ export const setTotalValue = () => {
 
   if (total) {
     totalPrice.innerHTML = total;
+    totalPriceWrapper.classList.remove('cart__total-price--hidden');
+    checkoutBtn.classList.remove('cart__checkout-btn--hidden');
   } else {
-    totalPriceWrapper.classList.add('cart__total-checkout--hide');
-    checkoutBtn.classList.add('cart__total-checkout--hide');
+    totalPriceWrapper.classList.add('cart__total-price--hidden');
+    checkoutBtn.classList.add('cart__checkout-btn--hidden');
     cartProductsContainer.innerHTML = `<p class="cart__empty-mes">Your cart is empty &#x1F97A;</p>`;
   }
 };

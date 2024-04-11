@@ -6,6 +6,13 @@ import { displayFetchedProducts } from '../products/displayProducts.js';
 const totalProductCount = getElement('.nav__cart-count');
 let cart = getStorageItem('cart');
 
-displayFetchedProducts(url);
+const init = () => {
+  const pageLoading = getElement('.loading-spinner');
 
-displayTotalProductCount(cart, totalProductCount);
+  displayFetchedProducts(url);
+  displayTotalProductCount(cart, totalProductCount);
+
+  pageLoading.style.display = 'none';
+};
+
+init();

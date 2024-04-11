@@ -51,10 +51,24 @@
       <section class="cart">
         <h1 class="cart__title">Your shopping cart</h1>
         <div class="cart__inner"></div>
-        <p class="cart__total-price-wrapper">
-          Total: <span class="cart__total-price"></span> PLN
+        <p class="cart__total-price-wrapper cart__total-price--hidden">
+          Total:
+          <span class="cart__total-price"></span> PLN
         </p>
-        <button class="btn btn--checkout cart__checkout-btn">Checkout</button>
+        <button
+          class="btn btn--checkout cart__checkout-btn cart__checkout-btn--hidden"
+        >
+          Checkout
+        </button>
+        <!-- PAGE LOADING -->
+        <div class="loading-spinner">
+          <div class="loading-spinner__box">
+            <div class="loading-spinner__circle"></div>
+            <div class="loading-spinner__circle"></div>
+            <div class="loading-spinner__circle"></div>
+            <div class="loading-spinner__circle"></div>
+          </div>
+        </div>
       </section>
     </main>
     <!-- js -->
