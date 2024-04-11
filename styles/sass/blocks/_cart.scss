@@ -18,6 +18,15 @@
     @include text-hero-btn;
     align-self: end;
   }
+
+  &__total-checkout--hide {
+    display: none;
+  }
+
+  &__empty-mes {
+    @include text-hero-btn;
+    text-align: center;
+  }
 }
 
 .cart-product {

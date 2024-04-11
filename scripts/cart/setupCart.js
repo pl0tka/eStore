@@ -2,9 +2,11 @@ import { getElement, getStorageItem, setStorageItem } from '../utils/utils.js';
 import { displayTotalProductCount } from '../common.js';
 import { renderCartProducts } from './renderCartProducts.js';
 
-const totalPrice = getElement('.cart__total-price');
 const totalProductCount = getElement('.nav__cart-count');
 const cartProductsContainer = getElement('.cart__inner');
+const totalPrice = getElement('.cart__total-price');
+const totalPriceWrapper = getElement('.cart__total-price-wrapper');
+const checkoutBtn = getElement('.cart__checkout-btn');
 
 let cart = getStorageItem('cart');
 
@@ -42,11 +44,19 @@ const updateCartProductListDOM = (action, productCountDOM, productIndex) => {
 };
 
 export const setTotalValue = () => {
-  totalPrice.innerHTML =
+  const total =
     cart.reduce(
       (sum, product) => sum + product.price * 100 * product.count,
       0
     ) / 100;
+
+  if (total) {
+    totalPrice.innerHTML = total;
+  } else {
+    totalPriceWrapper.classList.add('cart__total-checkout--hide');
+    checkoutBtn.classList.add('cart__total-checkout--hide');
+    cartProductsContainer.innerHTML = `<p class="cart__empty-mes">Your cart is empty &#x1F97A;</p>`;
+  }
 };
 
 export const handleBtnClick = (event) => {

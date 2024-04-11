@@ -450,6 +450,25 @@ body {
     font-size: 2.25rem;
   }
 }
+.cart__total-checkout--hide {
+  display: none;
+}
+.cart__empty-mes {
+  font-size: 1.25rem;
+  font-weight: 100;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .cart__empty-mes {
+    font-size: 1.75rem;
+  }
+}
+@media (min-width: 1200px) {
+  .cart__empty-mes {
+    font-size: 2.25rem;
+  }
+}
 
 .cart-product {
   display: flex;
