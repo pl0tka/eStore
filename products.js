@@ -4,6 +4,7 @@ import { getElement, getStorageItem, setStorageItem } from './utils.js';
 import { displayTotalProductCount } from './common.js';
 import { renderAllProducts } from './renderAllProducts.js';
 import { fetchProducts } from './fetchProducts.js';
+import { addSingleProductToCart } from './addProductToCart.js';
 
 // API all products
 const url = 'https://fakestoreapi.com/products/';
@@ -16,39 +17,15 @@ const displayFetchedProducts = async () => {
   const products = await fetchProducts(url);
   renderAllProducts(products, productsContainer);
 
-  // ADD PRODUCT TO CART
+  // DOM selections
   const addToCartBtns = document.querySelectorAll('.product__add-to-cart-btn');
   const infoBtns = document.querySelectorAll('.product__info-btn');
 
+  // ADD PRODUCT TO CART
   addToCartBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const productId = parseInt(btn.dataset.id);
-      const selectedProduct = products.find(
-        (product) => product.id === productId
-      );
-      // LOCAL STORAGE OPERATIONS
-      // check if storage is empty
-      let cart = getStorageItem('cart');
-      // check if selected product is in storage
-      const productInCart = cart.find((product) => product.id === productId);
-      // set product to add
-      if (!productInCart) {
-        cart.push({ ...selectedProduct, count: 1 });
-      } else {
-        cart = cart.map((product) => {
-          if (product.id === productId) {
-            return { ...selectedProduct, count: product.count + 1 };
-          } else {
-            return product;
-          }
-        });
-      }
-      // add cart to storage
-      // localStorage.setItem('cart', JSON.stringify(cart));
-      setStorageItem('cart', cart);
-
-      // set amount of products in cart (icon)
-      displayTotalProductCount(cart, totalProductCount);
+      addSingleProductToCart(productId, products, totalProductCount);
     });
   });
 
