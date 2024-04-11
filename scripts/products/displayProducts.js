@@ -1,7 +1,7 @@
-import { getElement } from './utils.js';
+import { getElement } from '../utils/utils.js';
 import { renderAllProducts } from './renderAllProducts.js';
 import { fetchProducts } from './fetchProducts.js';
-import { addToCart } from './addProductToCart.js';
+import { addToCart } from '../cart/addProductToCart.js';
 import { renderModal } from './renderModal.js';
 
 const productsContainer = getElement('.products__inner');

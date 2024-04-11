@@ -1,4 +1,4 @@
-import { addToCart } from './addProductToCart.js';
+import { addToCart } from '../cart/addProductToCart.js';
 
 export const updateModalProductCountAndCart = (
   productId,

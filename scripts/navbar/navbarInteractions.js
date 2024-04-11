@@ -1,4 +1,4 @@
-import { getElement } from './utils.js';
+import { getElement } from '../utils/utils.js';
 
 const toggleNavBtn = getElement('.header__toggle-btn');
 const nav = getElement('.nav');

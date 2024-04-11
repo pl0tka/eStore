@@ -1,4 +1,4 @@
-import { getElement } from './utils.js';
+import { getElement } from '../utils/utils.js';
 import { updateModalProductCountAndCart } from './updateModalProductCountAndCart.js';
 
 export const renderModal = (productId, products) => {

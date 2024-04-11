@@ -1,36 +1,12 @@
-import './navbarInteractions.js';
+import { getElement, getStorageItem, setStorageItem } from '../utils/utils.js';
+import { displayTotalProductCount } from '../common.js';
+import { renderCartProducts } from './renderCartProducts.js';
 
-import { getElement, getStorageItem, setStorageItem } from './utils.js';
-import { displayTotalProductCount } from './common.js';
-
-const cartProductsContainer = getElement('.cart__inner');
 const totalPrice = getElement('.cart__total-price');
 const totalProductCount = getElement('.nav__cart-count');
+const cartProductsContainer = getElement('.cart__inner');
 
 let cart = getStorageItem('cart');
-
-const renderCartProducts = (products, containerDOM) => {
-  const renderedProducts = products.map((product) => {
-    const { id, title, image, price, count } = product;
-    return `<article class="cart-product" data-id="${id}">
-    <div class="cart-product__img-box"><img src="${image}" alt="${image}" class="cart-product__img" /></div>
-    <div class="cart-product__info-box">
-    <h3 class="cart-product__title">${title}</h3>
-    <p class="cart-product__price">${price} PLN</p>
-    </div>
-    <button class="btn btn--remove cart-product__remove-btn" data-action="remove">
-      remove
-    </button>
-    <div class="cart-product__counter-box">
-    <button class="btn btn--count cart-product__decrease-btn"  data-action="decrease">-</button>
-    <p class="cart-product__count">${count}</p>
-    <button class="btn btn--count cart-product__increase-btn" data-action="increase">+</button>
-    </div>
-  </article>`;
-  }).join``;
-
-  containerDOM.innerHTML = renderedProducts;
-};
 
 const updateCart = (btn, productId, action) => {
   const productIndex = cart.findIndex((product) => product.id === productId);
@@ -65,7 +41,7 @@ const updateCartProductListDOM = (action, productCountDOM, productIndex) => {
   }
 };
 
-const setTotalValue = () => {
+export const setTotalValue = () => {
   totalPrice.innerHTML =
     cart.reduce(
       (sum, product) => sum + product.price * 100 * product.count,
@@ -73,7 +49,7 @@ const setTotalValue = () => {
     ) / 100;
 };
 
-const handleBtnClick = (event) => {
+export const handleBtnClick = (event) => {
   const btn = event.target;
   if (btn.classList.contains('btn')) {
     const productId = parseInt(btn.closest('.cart-product').dataset.id);
@@ -81,13 +57,3 @@ const handleBtnClick = (event) => {
     updateCart(btn, productId, btnAction);
   }
 };
-
-const init = () => {
-  renderCartProducts(cart, cartProductsContainer);
-  setTotalValue();
-  displayTotalProductCount(cart, totalProductCount);
-
-  cartProductsContainer.addEventListener('click', handleBtnClick);
-};
-
-init();

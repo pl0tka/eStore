@@ -1,6 +1,6 @@
-import './navbarInteractions.js';
+import './navbar/navbarInteractions.js';
 
-import { getElement } from './utils.js';
+import { getElement } from './utils/utils.js';
 import { displayTotalProductCount } from './common.js';
 const totalProductCount = getElement('.nav__cart-count');
 
