@@ -1,13 +1,18 @@
 @import './utils/reset';
 @import './utils/vars';
-@import './utils/mixins';
 @import './utils/breakpoints';
+@import './utils/mixins';
 
 @import './general/fonts';
 @import './general/global';
+@import './general/grid';
 
 @import './blocks/btn';
 @import './blocks/nav';
 
-@import './blocks/products';
 @import './blocks/hero';
+@import './blocks/products';
+@import './blocks/cart';
+@import './blocks/modal';
+@import './blocks/loading';
+@import './blocks/popup';

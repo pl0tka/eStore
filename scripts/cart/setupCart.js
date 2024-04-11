@@ -1,30 +1,14 @@
-import { getElement, getStorageItem, setStorageItem } from './utils.js';
-import { displayTotalProductCount } from './common.js';
+import { getElement, getStorageItem, setStorageItem } from '../utils/utils.js';
+import { displayTotalProductCount } from '../common/common.js';
+import { renderCartProducts } from './renderCartProducts.js';
 
+const totalProductCount = getElement('.nav__cart-count');
 const cartProductsContainer = getElement('.cart__inner');
 const totalPrice = getElement('.cart__total-price');
-const totalProductCount = getElement('.nav__cart-count');
+const totalPriceWrapper = getElement('.cart__total-price-wrapper');
+const checkoutBtn = getElement('.cart__checkout-btn');
 
 let cart = getStorageItem('cart');
-
-const renderCartProducts = (products, containerDOM) => {
-  const renderedProducts = products.map((product) => {
-    const { id, title, image, price, count } = product;
-    return `<article class="cart-product" data-id="${id}">
-  <img src="${image}" alt="${image}" class="cart-product__img" />
-  <h3 class="cart-product__title">${title}</h3>
-  <p class="cart-product__price">${price} PLN</p>
-  <button class="btn cart-product__remove-btn" data-action="remove">
-    remove
-  </button>
-  <button class="btn cart-product__decrease-btn" data-action="decrease">-</button>
-  <p class="cart-product__count">${count}</p>
-  <button class="btn cart-product__increase-btn" data-action="increase">+</button>
-</article>`;
-  }).join``;
-
-  containerDOM.innerHTML = renderedProducts;
-};
 
 const updateCart = (btn, productId, action) => {
   const productIndex = cart.findIndex((product) => product.id === productId);
@@ -59,29 +43,29 @@ const updateCartProductListDOM = (action, productCountDOM, productIndex) => {
   }
 };
 
-const setTotalValue = () => {
-  totalPrice.innerHTML =
+export const setTotalValue = () => {
+  const total =
     cart.reduce(
       (sum, product) => sum + product.price * 100 * product.count,
       0
     ) / 100;
+
+  if (total) {
+    totalPrice.innerHTML = total;
+    totalPriceWrapper.classList.remove('cart__total-price--hidden');
+    checkoutBtn.classList.remove('cart__checkout-btn--hidden');
+  } else {
+    totalPriceWrapper.classList.add('cart__total-price--hidden');
+    checkoutBtn.classList.add('cart__checkout-btn--hidden');
+    cartProductsContainer.innerHTML = `<p class="cart__empty-mes">Your cart is empty &#x1F97A;</p>`;
+  }
 };
 
-const handleBtnClick = (event) => {
+export const handleBtnClick = (event) => {
   const btn = event.target;
   if (btn.classList.contains('btn')) {
-    const productId = parseInt(btn.parentElement.dataset.id);
+    const productId = parseInt(btn.closest('.cart-product').dataset.id);
     const btnAction = btn.dataset.action;
     updateCart(btn, productId, btnAction);
   }
 };
-
-const init = () => {
-  renderCartProducts(cart, cartProductsContainer);
-  setTotalValue();
-  displayTotalProductCount(cart, totalProductCount);
-
-  cartProductsContainer.addEventListener('click', handleBtnClick);
-};
-
-init();

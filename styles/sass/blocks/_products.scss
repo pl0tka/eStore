@@ -1,17 +1,35 @@
+.products {
+  @include limit-content-width;
+
+  &__title {
+    @include text-section-title;
+  }
+}
+
 .product {
   display: flex;
   flex-direction: column;
+  gap: $gap;
   align-items: center;
   text-align: center;
-  border: 1px solid $clr-grey-lighter;
-  margin: 1.5rem;
-  padding: 1rem;
-  border-radius: $border-radius;
-  width: 15rem;
+  @include card;
+
+  &__img-box {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 3/2;
+  }
 
   &__img {
-    width: 10rem;
-    height: auto;
-    object-fit: cover;
+    @include img;
+  }
+
+  &__title {
+    @include text-md;
+    flex-grow: 1;
+  }
+
+  &__price {
+    @include text-product-price;
   }
 }

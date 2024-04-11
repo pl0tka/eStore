@@ -1,0 +1,23 @@
+.popup {
+  @include card;
+  border-color: $clr-grey-light;
+  position: fixed;
+  top: 3.5rem;
+  right: 0.5rem;
+  animation: slideInRight 2.5s ease-out;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  10% {
+    transform: translateX(0);
+  }
+  95% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

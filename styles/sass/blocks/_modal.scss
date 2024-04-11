@@ -1,0 +1,115 @@
+.modal--hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(34, 34, 34, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-product {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  @include card;
+  width: 90%;
+  height: 90%;
+  overflow: scroll;
+
+  @include md-screen {
+    max-width: 47.5rem;
+    max-height: 35rem;
+  }
+
+  &__close-btn {
+    align-self: end;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    flex-grow: 1;
+
+    @include md-screen {
+      flex-direction: row;
+      gap: $gap * 2;
+    }
+  }
+
+  &__img-box {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 2/3;
+    flex-shrink: 0;
+
+    @include sm-screen {
+      aspect-ratio: 1/1;
+    }
+
+    @include md-screen {
+      max-width: 17.5rem;
+    }
+  }
+
+  &__img {
+    @include img;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+
+  &__title {
+    @include text-lg;
+  }
+
+  &__desc {
+    font-weight: 200;
+    flex-grow: 1;
+  }
+
+  &__price {
+    @include text-product-price;
+  }
+
+  &__counter-box {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: $gap;
+  }
+
+  &__add-to-cart-btn {
+    flex-grow: 1;
+  }
+
+  // Product added
+  &__inner--added-mes {
+    flex-direction: column !important;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__product-added-mes {
+    @include text-lg;
+  }
+
+  &__btns-box--added-mes {
+    display: flex;
+    justify-content: center;
+    gap: $gap;
+  }
+
+  &__btn-link {
+    color: inherit;
+  }
+}

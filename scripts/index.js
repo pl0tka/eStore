@@ -1,5 +1,7 @@
-import { getElement } from './utils.js';
-import { displayTotalProductCount } from './common.js';
+import './navbar/navbarInteractions.js';
+
+import { getElement } from './utils/utils.js';
+import { displayTotalProductCount } from './common/common.js';
 const totalProductCount = getElement('.nav__cart-count');
 
 // set amount of products in cart (icon)

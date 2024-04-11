@@ -3,6 +3,10 @@
   border: none;
   border-radius: $btn-radius;
   letter-spacing: $spacing;
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  transition: $transition-base;
 }
 @mixin btn-padding($padding-x: $padding-xs, $padding-y: $padding-sm) {
   padding: $padding-x $padding-y;
@@ -10,6 +14,10 @@
 @mixin btn-color($bg-color: $clr-primary, $color: $clr-white) {
   background-color: $bg-color;
   color: $color;
+
+  &:hover {
+    background-color: darken($bg-color, 7%);
+  }
 }
 
 .btn {
@@ -17,10 +25,29 @@
   @include btn-padding;
   @include btn-color;
 }
-// .btn--secondary {
-//   @include btn($clr-secondary);
-// }
 .btn--shop-now {
   @include btn-padding($padding-sm, $padding-sm * 2);
   @include btn-color($clr-secondary, $clr-white);
+}
+.btn--checkout {
+  @include btn-padding($padding-xs, $padding-sm * 2);
+}
+.btn--remove {
+  @include btn-color($clr-danger, $clr-white);
+}
+.btn--count {
+  @include btn-color($clr-grey-light, $clr-black);
+}
+.btn--disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+.btn--secondary {
+  @include btn-color($clr-secondary, $clr-white);
+}
+.btn--white {
+  @include btn-color($clr-white, $clr-primary);
+}
+.btn--grey {
+  @include btn-color($clr-grey-light, $clr-black);
 }

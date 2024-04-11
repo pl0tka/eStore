@@ -1,3 +1,5 @@
+export const url = 'https://fakestoreapi.com/products/'; // Products API
+
 export const getElement = (selection) => {
   const element = document.querySelector(selection);
   if (element) {
@@ -13,6 +15,7 @@ export const getStorageItem = (itemKey) => {
   }
   return storageItem;
 };
+
 export const setStorageItem = (itemKey, itemValue) => {
   localStorage.setItem(itemKey, JSON.stringify(itemValue));
 };
