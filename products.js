@@ -3,6 +3,7 @@ import './navbarInteractions.js';
 import { getElement, getStorageItem, setStorageItem } from './utils.js';
 import { displayTotalProductCount } from './common.js';
 import { renderAllProducts } from './renderAllProducts.js';
+import { fetchProducts } from './fetchProducts.js';
 
 // API all products
 const url = 'https://fakestoreapi.com/products/';
@@ -10,17 +11,6 @@ const url = 'https://fakestoreapi.com/products/';
 // DOM selections
 const productsContainer = getElement('.products__inner');
 const totalProductCount = getElement('.nav__cart-count');
-
-// FETCH PRODUCTS
-const fetchProducts = async (url) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-};
 
 const displayFetchedProducts = async () => {
   const products = await fetchProducts(url);
