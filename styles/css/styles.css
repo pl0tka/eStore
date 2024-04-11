@@ -693,5 +693,32 @@ body {
     transform: rotate(360deg);
   }
 }
+.popup {
+  background-color: #fff;
+  border: 1px solid #edeeef;
+  box-shadow: 0px 6px 20px -15px #b0b8c0;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border-color: #d1d5da;
+  position: fixed;
+  top: 3.5rem;
+  right: 0.5rem;
+  animation: slideInRight 2.5s ease-out;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  10% {
+    transform: translateX(0);
+  }
+  95% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

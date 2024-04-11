@@ -3,6 +3,7 @@ import { renderAllProducts } from './renderAllProducts.js';
 import { fetchProducts } from './fetchProducts.js';
 import { addToCart } from '../cart/addProductToCart.js';
 import { renderModal } from './renderModal.js';
+import { displayPopup } from './displayPopup.js';
 
 const productsContainer = getElement('.products__inner');
 
@@ -22,6 +23,7 @@ export const displayFetchedProducts = async (url) => {
       );
 
       addToCart(productId, selectedProduct);
+      displayPopup();
     });
   });
 
