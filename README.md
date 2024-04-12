@@ -6,7 +6,7 @@ Deployed project: https://only-best-prices.netlify.app/ .
 
 ## Technologies
 
-HTML, CSS (Sass), JavaScript(ES6)
+JavaScript(ES6), HTML, CSS (Sass) written using BEM methodology
 
 ## Credits
 
